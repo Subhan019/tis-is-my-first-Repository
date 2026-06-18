@@ -1,0 +1,2929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zala Hospital — Kabul, Afghanistan</title>
+  <!-- Google Fonts: Inter for body, Playfair Display for display headings -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =============================================
+       DESIGN TOKENS & RESET
+    ============================================= */
+    :root {
+      --blue-900: #0a2540;
+      --blue-700: #1a4b8c;
+      --blue-500: #2563eb;
+      --blue-400: #3b82f6;
+      --blue-100: #dbeafe;
+      --blue-50:  #eff6ff;
+      --teal:     #0d9488;
+      --teal-light: #ccfbf1;
+      --gray-900: #111827;
+      --gray-700: #374151;
+      --gray-500: #6b7280;
+      --gray-300: #d1d5db;
+      --gray-100: #f3f4f6;
+      --white:    #ffffff;
+      --red-600:  #dc2626;
+      --red-50:   #fef2f2;
+
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'Inter', system-ui, sans-serif;
+
+      --shadow-sm: 0 1px 3px rgba(0,0,0,.08);
+      --shadow-md: 0 4px 16px rgba(0,0,0,.10);
+      --shadow-lg: 0 8px 32px rgba(0,0,0,.14);
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --transition: .25s ease;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--gray-900);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    img { max-width: 100%; display: block; }
+    a   { text-decoration: none; color: inherit; }
+    ul  { list-style: none; }
+
+    /* =============================================
+       UTILITY CLASSES
+    ============================================= */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section {
+      padding: 80px 0;
+    }
+
+    .section--alt {
+      background: var(--gray-100);
+    }
+
+    .section--dark {
+      background: var(--blue-900);
+      color: var(--white);
+    }
+
+    .section__eyebrow {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--blue-500);
+      margin-bottom: 10px;
+    }
+
+    .section--dark .section__eyebrow { color: var(--teal-light); }
+
+    .section__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      color: var(--blue-900);
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .section--dark .section__title { color: var(--white); }
+
+    .section__subtitle {
+      font-size: 1.05rem;
+      color: var(--gray-500);
+      max-width: 600px;
+      margin-bottom: 56px;
+    }
+
+    .section--dark .section__subtitle { color: #94a3b8; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: .9rem;
+      cursor: pointer;
+      transition: var(--transition);
+      border: 2px solid transparent;
+    }
+
+    .btn--primary {
+      background: var(--blue-500);
+      color: var(--white);
+    }
+    .btn--primary:hover {
+      background: var(--blue-700);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn--outline {
+      background: transparent;
+      border-color: var(--white);
+      color: var(--white);
+    }
+    .btn--outline:hover {
+      background: var(--white);
+      color: var(--blue-700);
+    }
+
+    .btn--teal {
+      background: var(--teal);
+      color: var(--white);
+    }
+    .btn--teal:hover {
+      background: #0f766e;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: .75rem;
+      font-weight: 600;
+      background: var(--blue-100);
+      color: var(--blue-700);
+    }
+
+    /* =============================================
+       STICKY NAVIGATION
+    ============================================= */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(10, 37, 64, .97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+
+    /* Brand / logo */
+    .nav__brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav__logo-icon {
+      width: 42px;
+      height: 42px;
+      background: linear-gradient(135deg, var(--blue-400), var(--teal));
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+    }
+
+    .nav__brand-text span:first-child {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .nav__brand-text span:last-child {
+      font-size: .68rem;
+      color: #94a3b8;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    /* Nav links */
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav__links a {
+      color: #cbd5e1;
+      font-size: .82rem;
+      font-weight: 500;
+      padding: 6px 10px;
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+    }
+
+    .nav__links a:hover {
+      color: var(--white);
+      background: rgba(255,255,255,.08);
+    }
+
+    .nav__emergency {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--red-600);
+      color: var(--white);
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .03em;
+      transition: var(--transition);
+    }
+    .nav__emergency:hover {
+      background: #b91c1c;
+      transform: scale(1.03);
+    }
+
+    /* Mobile hamburger (CSS-only toggle using checkbox) */
+    .nav__toggle { display: none; }
+    .nav__hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
+    }
+    .nav__hamburger span {
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: var(--transition);
+      display: block;
+    }
+
+    /* =============================================
+       HERO SECTION
+    ============================================= */
+    .hero {
+      min-height: 92vh;
+      background:
+        linear-gradient(135deg, rgba(10,37,64,.92) 0%, rgba(26,75,140,.80) 60%, rgba(13,148,136,.50) 100%),
+        url("https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1600&q=80") center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Decorative circles */
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 480px;
+      height: 480px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.07);
+      top: -120px;
+      right: -120px;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(13,148,136,.25), transparent 70%);
+      bottom: 60px;
+      left: -80px;
+    }
+
+    .hero__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero__tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.15);
+      color: var(--teal-light);
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .hero__title em {
+      font-style: normal;
+      color: #67e8f9;
+    }
+
+    .hero__desc {
+      font-size: 1.05rem;
+      color: #cbd5e1;
+      margin-bottom: 36px;
+      max-width: 500px;
+      line-height: 1.7;
+    }
+
+    .hero__actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* Stats card cluster */
+    .hero__stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .hero__stat-card {
+      background: rgba(255,255,255,.09);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--radius-md);
+      padding: 28px 24px;
+      backdrop-filter: blur(8px);
+      transition: var(--transition);
+    }
+
+    .hero__stat-card:hover {
+      background: rgba(255,255,255,.14);
+      transform: translateY(-4px);
+    }
+
+    .hero__stat-card:first-child {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, rgba(13,148,136,.35), rgba(37,99,235,.25));
+    }
+
+    .hero__stat-num {
+      font-family: var(--font-display);
+      font-size: 2.4rem;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .hero__stat-label {
+      font-size: .8rem;
+      color: #94a3b8;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .hero__stat-icon {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+    }
+
+    /* =============================================
+       ANNOUNCEMENT BANNER
+    ============================================= */
+    .announce {
+      background: linear-gradient(90deg, var(--blue-700), var(--teal));
+      color: var(--white);
+      text-align: center;
+      padding: 12px 24px;
+      font-size: .88rem;
+      font-weight: 500;
+      letter-spacing: .03em;
+    }
+
+    .announce strong { font-weight: 700; }
+
+    /* =============================================
+       ABOUT SECTION
+    ============================================= */
+    .about__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .about__img-wrap {
+      position: relative;
+    }
+
+    .about__img-main {
+      width: 100%;
+      height: 440px;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .about__img-badge {
+      position: absolute;
+      bottom: -24px;
+      left: -24px;
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 20px 24px;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .about__img-badge-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--blue-50);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+
+    .about__img-badge-text strong {
+      display: block;
+      font-size: 1.3rem;
+      color: var(--blue-700);
+      font-weight: 700;
+    }
+
+    .about__img-badge-text span {
+      font-size: .75rem;
+      color: var(--gray-500);
+    }
+
+    .about__points {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .about__point {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 20px;
+      background: var(--blue-50);
+      border-left: 3px solid var(--blue-500);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    }
+
+    .about__point-icon { font-size: 1.3rem; margin-top: 2px; }
+
+    .about__point-text strong {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 2px;
+      color: var(--blue-900);
+    }
+
+    .about__point-text span { font-size: .88rem; color: var(--gray-500); }
+
+    /* =============================================
+       MISSION & VISION
+    ============================================= */
+    .mv__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .mv__card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 36px 28px;
+      box-shadow: var(--shadow-sm);
+      border-top: 4px solid var(--blue-500);
+      transition: var(--transition);
+    }
+
+    .mv__card:nth-child(2) { border-top-color: var(--teal); }
+    .mv__card:nth-child(3) { border-top-color: #7c3aed; }
+
+    .mv__card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .mv__icon {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--radius-sm);
+      background: var(--blue-50);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.7rem;
+      margin-bottom: 20px;
+    }
+
+    .mv__card:nth-child(2) .mv__icon { background: var(--teal-light); }
+    .mv__card:nth-child(3) .mv__icon { background: #ede9fe; }
+
+    .mv__card h3 {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      color: var(--blue-900);
+      margin-bottom: 12px;
+    }
+
+    .mv__card p { font-size: .92rem; color: var(--gray-500); line-height: 1.7; }
+
+    /* =============================================
+       DEPARTMENTS
+    ============================================= */
+    .dept__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .dept__card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 28px 20px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--gray-300);
+      transition: var(--transition);
+      cursor: default;
+    }
+
+    .dept__card:hover {
+      border-color: var(--blue-400);
+      box-shadow: 0 8px 24px rgba(37,99,235,.15);
+      transform: translateY(-5px);
+    }
+
+    .dept__icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      background: var(--blue-50);
+      transition: var(--transition);
+    }
+
+    .dept__card:hover .dept__icon {
+      background: var(--blue-500);
+    }
+
+    .dept__card h3 {
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--blue-900);
+      margin-bottom: 6px;
+    }
+
+    .dept__card p { font-size: .8rem; color: var(--gray-500); }
+
+    /* =============================================
+       MEDICAL SERVICES
+    ============================================= */
+    .services__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .service__card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .service__card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+    }
+
+    .service__img {
+      height: 180px;
+      background: linear-gradient(135deg, var(--blue-700), var(--blue-500));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+
+    .service__body {
+      padding: 24px 22px;
+    }
+
+    .service__body h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--blue-900);
+      margin-bottom: 8px;
+    }
+
+    .service__body p { font-size: .87rem; color: var(--gray-500); line-height: 1.65; }
+
+    .service__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 14px;
+      font-size: .83rem;
+      font-weight: 600;
+      color: var(--blue-500);
+      transition: var(--transition);
+    }
+    .service__link:hover { color: var(--blue-700); gap: 10px; }
+
+    /* =============================================
+       DOCTORS TEAM
+    ============================================= */
+    .doctors__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .doctor__card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      text-align: center;
+    }
+
+    .doctor__card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-5px);
+    }
+
+    .doctor__photo {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      background: linear-gradient(160deg, var(--blue-100), var(--blue-50));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+    }
+
+    .doctor__body {
+      padding: 20px 16px 24px;
+    }
+
+    .doctor__body h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--blue-900);
+      margin-bottom: 4px;
+    }
+
+    .doctor__specialty {
+      font-size: .8rem;
+      color: var(--blue-500);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .doctor__meta {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      font-size: .75rem;
+      color: var(--gray-500);
+    }
+
+    .doctor__meta span { display: flex; align-items: center; gap: 4px; }
+
+    /* =============================================
+       FORMS (Registration & Appointment)
+    ============================================= */
+    .forms__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .form__card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 40px 36px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .form__card h2 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--blue-900);
+      margin-bottom: 6px;
+    }
+
+    .form__card p.form__desc {
+      font-size: .88rem;
+      color: var(--gray-500);
+      margin-bottom: 28px;
+    }
+
+    .form__row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form__group {
+      margin-bottom: 18px;
+    }
+
+    .form__group label {
+      display: block;
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--gray-700);
+      margin-bottom: 6px;
+    }
+
+    .form__group input,
+    .form__group select,
+    .form__group textarea {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid var(--gray-300);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-size: .9rem;
+      color: var(--gray-900);
+      background: var(--white);
+      transition: var(--transition);
+      outline: none;
+      appearance: none;
+    }
+
+    .form__group input:focus,
+    .form__group select:focus,
+    .form__group textarea:focus {
+      border-color: var(--blue-500);
+      box-shadow: 0 0 0 3px rgba(37,99,235,.12);
+    }
+
+    .form__group textarea { resize: vertical; min-height: 90px; }
+
+    .form__submit {
+      width: 100%;
+      padding: 14px;
+      border-radius: 50px;
+      border: none;
+      background: linear-gradient(90deg, var(--blue-700), var(--blue-500));
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      letter-spacing: .04em;
+      margin-top: 8px;
+    }
+
+    .form__submit:hover {
+      background: linear-gradient(90deg, var(--blue-900), var(--blue-700));
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* =============================================
+       WORKING HOURS TABLE
+    ============================================= */
+    .hours__wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+
+    .hours__header {
+      background: linear-gradient(135deg, var(--blue-900), var(--blue-700));
+      color: var(--white);
+      padding: 22px 32px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .hours__header h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+    }
+
+    .hours__table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .hours__table th {
+      background: var(--blue-50);
+      color: var(--blue-700);
+      font-size: .8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      padding: 14px 24px;
+      text-align: left;
+    }
+
+    .hours__table td {
+      padding: 14px 24px;
+      font-size: .92rem;
+      color: var(--gray-700);
+      border-bottom: 1px solid var(--gray-100);
+    }
+
+    .hours__table tr:last-child td { border-bottom: none; }
+
+    .hours__table tr:nth-child(even) { background: #f9fafb; }
+
+    .hours__table tr:hover td { background: var(--blue-50); }
+
+    .hours__status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: .78rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 50px;
+    }
+
+    .status--open  { background: #dcfce7; color: #166534; }
+    .status--close { background: var(--red-50); color: var(--red-600); }
+    .status--24h   { background: var(--teal-light); color: #0d9488; }
+
+    /* =============================================
+       TESTIMONIALS
+    ============================================= */
+    .testimonials__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .testimonial__card {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--radius-md);
+      padding: 32px 28px;
+      transition: var(--transition);
+    }
+
+    .testimonial__card:hover {
+      background: rgba(255,255,255,.11);
+      transform: translateY(-4px);
+    }
+
+    .testimonial__stars {
+      color: #fbbf24;
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+
+    .testimonial__text {
+      font-size: .92rem;
+      color: #cbd5e1;
+      line-height: 1.75;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .testimonial__author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .testimonial__avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue-400), var(--teal));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: var(--white);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .testimonial__author-info strong {
+      display: block;
+      color: var(--white);
+      font-size: .9rem;
+      font-weight: 600;
+    }
+
+    .testimonial__author-info span {
+      font-size: .75rem;
+      color: #64748b;
+    }
+
+    /* =============================================
+       FAQ SECTION
+    ============================================= */
+    .faq__list {
+      max-width: 760px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .faq__item {
+      background: var(--white);
+      border-radius: var(--radius-sm);
+      border: 1.5px solid var(--gray-300);
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .faq__item:hover { border-color: var(--blue-400); }
+
+    /* CSS-only accordion using :target */
+    .faq__q {
+      padding: 18px 22px;
+      font-size: .95rem;
+      font-weight: 600;
+      color: var(--blue-900);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+
+    .faq__q::after {
+      content: '+';
+      font-size: 1.4rem;
+      color: var(--blue-500);
+      transition: var(--transition);
+      font-weight: 300;
+    }
+
+    .faq__toggle { display: none; }
+
+    .faq__toggle:checked + .faq__q::after { content: '−'; }
+
+    .faq__toggle:checked ~ .faq__a {
+      max-height: 300px;
+      padding: 0 22px 18px;
+    }
+
+    .faq__a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease, padding .25s ease;
+      font-size: .9rem;
+      color: var(--gray-500);
+      line-height: 1.7;
+      padding: 0 22px;
+    }
+
+    /* =============================================
+       EMERGENCY SERVICES
+    ============================================= */
+    .emergency__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 0;
+    }
+
+    .emergency__card {
+      background: rgba(220,38,38,.08);
+      border: 1px solid rgba(220,38,38,.25);
+      border-radius: var(--radius-md);
+      padding: 28px 24px;
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .emergency__card:hover {
+      background: rgba(220,38,38,.14);
+      transform: translateY(-4px);
+    }
+
+    .emergency__card-icon {
+      font-size: 2.4rem;
+      margin-bottom: 14px;
+    }
+
+    .emergency__card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+
+    .emergency__card p {
+      font-size: .85rem;
+      color: #94a3b8;
+      margin-bottom: 14px;
+    }
+
+    .emergency__number {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: #fca5a5;
+      font-weight: 700;
+    }
+
+    /* =============================================
+       CONTACT SECTION
+    ============================================= */
+    .contact__grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .contact__info h2 {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      color: var(--blue-900);
+      margin-bottom: 16px;
+    }
+
+    .contact__info p {
+      font-size: .95rem;
+      color: var(--gray-500);
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    .contact__items {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .contact__item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .contact__item-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--blue-50);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .contact__item-text strong {
+      display: block;
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--gray-700);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 3px;
+    }
+
+    .contact__item-text span {
+      font-size: .92rem;
+      color: var(--gray-500);
+    }
+
+    /* Map placeholder */
+    .contact__map {
+      background: linear-gradient(135deg, var(--blue-50), var(--blue-100));
+      border-radius: var(--radius-lg);
+      height: 340px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      border: 2px dashed var(--blue-300, #93c5fd);
+      font-size: 3rem;
+    }
+
+    .contact__map p {
+      font-size: .9rem;
+      color: var(--blue-700);
+      font-weight: 600;
+    }
+
+    /* =============================================
+       LOCATION INFO
+    ============================================= */
+    .location__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .location__card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 28px 22px;
+      box-shadow: var(--shadow-sm);
+      border-bottom: 3px solid var(--blue-500);
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .location__card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .location__card-icon { font-size: 2rem; margin-bottom: 12px; }
+
+    .location__card h3 {
+      font-size: .85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      color: var(--blue-700);
+      margin-bottom: 8px;
+    }
+
+    .location__card p { font-size: .88rem; color: var(--gray-500); }
+
+    /* =============================================
+       PROFESSIONAL FOOTER
+    ============================================= */
+    .footer {
+      background: var(--blue-900);
+      color: #cbd5e1;
+      padding-top: 72px;
+    }
+
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr 1fr 1.2fr;
+      gap: 48px;
+      padding-bottom: 56px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .footer__brand p {
+      font-size: .88rem;
+      line-height: 1.7;
+      color: #64748b;
+      margin: 16px 0 24px;
+    }
+
+    .footer__social {
+      display: flex;
+      gap: 10px;
+    }
+
+    .footer__social a {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.07);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .footer__social a:hover {
+      background: var(--blue-500);
+      transform: translateY(-2px);
+    }
+
+    .footer__col h4 {
+      font-size: .82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+
+    .footer__col ul { display: flex; flex-direction: column; gap: 10px; }
+
+    .footer__col ul a {
+      font-size: .88rem;
+      color: #64748b;
+      transition: var(--transition);
+    }
+
+    .footer__col ul a:hover { color: var(--blue-400); padding-left: 4px; }
+
+    .footer__contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 14px;
+      font-size: .87rem;
+      color: #64748b;
+    }
+
+    .footer__contact-item span:first-child { font-size: 1rem; margin-top: 1px; }
+
+    .footer__bottom {
+      padding: 20px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: .8rem;
+      color: #475569;
+    }
+
+    .footer__bottom a { color: var(--blue-400); }
+    .footer__bottom a:hover { text-decoration: underline; }
+
+    /* =============================================
+       EMERGENCY BANNER (Top)
+    ============================================= */
+    .topbar {
+      background: var(--red-600);
+      color: var(--white);
+      text-align: center;
+      padding: 8px 24px;
+      font-size: .82rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+    }
+
+    /* =============================================
+       RESPONSIVE — TABLET (< 1024px)
+    ============================================= */
+    @media (max-width: 1023px) {
+      .hero__inner { grid-template-columns: 1fr; gap: 48px; }
+      .hero__stats  { grid-template-columns: repeat(3, 1fr); }
+      .hero__stat-card:first-child { grid-column: 1 / -1; }
+
+      .about__grid     { grid-template-columns: 1fr; }
+      .about__img-wrap { display: none; }
+
+      .mv__grid        { grid-template-columns: 1fr 1fr; }
+      .dept__grid      { grid-template-columns: repeat(2, 1fr); }
+      .services__grid  { grid-template-columns: 1fr 1fr; }
+      .doctors__grid   { grid-template-columns: repeat(2, 1fr); }
+      .forms__grid     { grid-template-columns: 1fr; }
+      .testimonials__grid { grid-template-columns: 1fr 1fr; }
+      .emergency__grid { grid-template-columns: 1fr 1fr; }
+      .contact__grid   { grid-template-columns: 1fr; }
+      .location__grid  { grid-template-columns: 1fr 1fr; }
+      .footer__grid    { grid-template-columns: 1fr 1fr; gap: 32px; }
+
+      .nav__links, .nav__emergency { display: none; }
+      .nav__hamburger { display: flex; }
+    }
+
+    /* =============================================
+       RESPONSIVE — MOBILE (< 640px)
+    ============================================= */
+    @media (max-width: 639px) {
+      .section { padding: 56px 0; }
+
+      .hero { min-height: auto; padding: 80px 0; }
+
+      .hero__stats { grid-template-columns: 1fr 1fr; }
+      .hero__stat-card:first-child { grid-column: 1 / -1; }
+
+      .mv__grid          { grid-template-columns: 1fr; }
+      .dept__grid        { grid-template-columns: 1fr 1fr; }
+      .services__grid    { grid-template-columns: 1fr; }
+      .doctors__grid     { grid-template-columns: 1fr 1fr; }
+      .testimonials__grid { grid-template-columns: 1fr; }
+      .emergency__grid   { grid-template-columns: 1fr; }
+      .location__grid    { grid-template-columns: 1fr 1fr; }
+      .footer__grid      { grid-template-columns: 1fr; }
+      .footer__bottom    { flex-direction: column; gap: 8px; text-align: center; }
+
+      .form__row { grid-template-columns: 1fr; }
+      .form__card { padding: 28px 20px; }
+
+      .hours__table td,
+      .hours__table th { padding: 12px 14px; font-size: .82rem; }
+    }
+
+    /* =============================================
+       MOBILE MENU (CSS-only)
+    ============================================= */
+    @media (max-width: 1023px) {
+      .nav__toggle:checked ~ .nav__mobile-menu {
+        display: flex;
+      }
+
+      .nav__mobile-menu {
+        display: none;
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: rgba(10,37,64,.98);
+        backdrop-filter: blur(16px);
+        flex-direction: column;
+        padding: 24px;
+        gap: 4px;
+        z-index: 999;
+        border-bottom: 1px solid rgba(255,255,255,.08);
+      }
+
+      .nav__mobile-menu a {
+        color: #cbd5e1;
+        font-size: .95rem;
+        font-weight: 500;
+        padding: 12px 16px;
+        border-radius: var(--radius-sm);
+        transition: var(--transition);
+        display: block;
+      }
+
+      .nav__mobile-menu a:hover { background: rgba(255,255,255,.07); color: var(--white); }
+
+      .nav__mobile-menu .nav__emergency {
+        display: inline-flex;
+        margin-top: 12px;
+        width: fit-content;
+      }
+    }
+
+    /* =============================================
+       SECTION DIVIDER
+    ============================================= */
+    .divider {
+      height: 4px;
+      background: linear-gradient(90deg, var(--blue-500), var(--teal), var(--blue-400));
+      opacity: .25;
+    }
+
+    /* =============================================
+       PARTNER / ACCREDITATIONS BAR
+    ============================================= */
+    .partners {
+      background: var(--white);
+      padding: 32px 0;
+      border-top: 1px solid var(--gray-100);
+      border-bottom: 1px solid var(--gray-100);
+    }
+
+    .partners__inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+
+    .partners__item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--gray-500);
+      font-size: .85rem;
+      font-weight: 600;
+    }
+
+    .partners__item span:first-child { font-size: 1.5rem; }
+
+    /* =============================================
+       SCROLL-TO-TOP (decorative link)
+    ============================================= */
+    .scroll-top {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 44px;
+      height: 44px;
+      background: var(--blue-500);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: var(--shadow-md);
+      z-index: 800;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+    .scroll-top:hover { background: var(--blue-700); transform: translateY(-3px); }
+
+  </style>
+</head>
+<body>
+
+<!-- ================================================
+     TOP EMERGENCY BAR
+================================================ -->
+<div class="topbar" id="top">
+  🚨 Emergency Hotline: <strong>+93 700 100 200</strong> &nbsp;|&nbsp; 24/7 Ambulance: <strong>+93 700 999 911</strong> &nbsp;|&nbsp; Open 365 days a year
+</div>
+
+<!-- ================================================
+     STICKY NAVIGATION
+================================================ -->
+<nav class="nav">
+  <div class="container nav__inner">
+
+    <!-- Logo -->
+    <a href="#top" class="nav__brand">
+      <div class="nav__logo-icon">🏥</div>
+      <div class="nav__brand-text">
+        <span>Zala Hospital</span>
+        <span>Kabul, Afghanistan</span>
+      </div>
+    </a>
+
+    <!-- Desktop links -->
+    <ul class="nav__links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#mission">Mission</a></li>
+      <li><a href="#departments">Departments</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#doctors">Doctors</a></li>
+      <li><a href="#forms">Register</a></li>
+      <li><a href="#appointment">Appointment</a></li>
+      <li><a href="#hours">Hours</a></li>
+      <li><a href="#emergency">Emergency</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <!-- Emergency CTA -->
+    <a href="tel:+93700100200" class="nav__emergency">
+      🚑 Emergency
+    </a>
+
+    <!-- Mobile hamburger (checkbox trick) -->
+    <label for="nav-toggle" class="nav__hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </label>
+    <input type="checkbox" id="nav-toggle" class="nav__toggle" />
+
+    <!-- Mobile menu -->
+    <div class="nav__mobile-menu">
+      <a href="#about"       onclick="document.getElementById('nav-toggle').checked=false">About</a>
+      <a href="#mission"     onclick="document.getElementById('nav-toggle').checked=false">Mission &amp; Vision</a>
+      <a href="#departments" onclick="document.getElementById('nav-toggle').checked=false">Departments</a>
+      <a href="#services"    onclick="document.getElementById('nav-toggle').checked=false">Services</a>
+      <a href="#doctors"     onclick="document.getElementById('nav-toggle').checked=false">Doctors</a>
+      <a href="#forms"       onclick="document.getElementById('nav-toggle').checked=false">Patient Registration</a>
+      <a href="#appointment" onclick="document.getElementById('nav-toggle').checked=false">Appointment</a>
+      <a href="#hours"       onclick="document.getElementById('nav-toggle').checked=false">Working Hours</a>
+      <a href="#testimonials"onclick="document.getElementById('nav-toggle').checked=false">Testimonials</a>
+      <a href="#faq"         onclick="document.getElementById('nav-toggle').checked=false">FAQ</a>
+      <a href="#emergency"   onclick="document.getElementById('nav-toggle').checked=false">Emergency</a>
+      <a href="#contact"     onclick="document.getElementById('nav-toggle').checked=false">Contact</a>
+      <a href="tel:+93700100200" class="nav__emergency" style="display:inline-flex;margin-top:12px;">🚑 Call Emergency</a>
+    </div>
+
+  </div>
+</nav>
+
+<!-- ================================================
+     HERO SECTION
+================================================ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero__inner">
+
+      <!-- Left: headline -->
+      <div class="hero__content">
+        <div class="hero__tag">
+          🇦🇫 Serving Afghanistan Since 2005
+        </div>
+        <h1 class="hero__title">
+          Quality Healthcare<br />for Every<br /><em>Afghan Family</em>
+        </h1>
+        <p class="hero__desc">
+          Zala Hospital in Kabul delivers compassionate, world-class medical care
+          to patients across Afghanistan — with a team of 120+ specialists and
+          state-of-the-art facilities open 24 hours a day.
+        </p>
+        <div class="hero__actions">
+          <a href="#appointment" class="btn btn--primary">Book Appointment</a>
+          <a href="#services"    class="btn btn--outline">Our Services</a>
+        </div>
+      </div>
+
+      <!-- Right: stat cards -->
+      <div class="hero__stats">
+
+        <div class="hero__stat-card">
+          <div class="hero__stat-icon">🏆</div>
+          <div class="hero__stat-num">19+</div>
+          <div class="hero__stat-label">Years of Trusted Care</div>
+        </div>
+
+        <div class="hero__stat-card">
+          <div class="hero__stat-icon">👨‍⚕️</div>
+          <div class="hero__stat-num">120+</div>
+          <div class="hero__stat-label">Specialist Doctors</div>
+        </div>
+
+        <div class="hero__stat-card">
+          <div class="hero__stat-icon">🛏️</div>
+          <div class="hero__stat-num">350</div>
+          <div class="hero__stat-label">Hospital Beds</div>
+        </div>
+
+        <div class="hero__stat-card">
+          <div class="hero__stat-icon">👨‍👩‍👧‍👦</div>
+          <div class="hero__stat-num">80K+</div>
+          <div class="hero__stat-label">Patients Served/Year</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Announcement banner -->
+<div class="announce">
+  📢 <strong>COVID-19 Vaccination</strong> now available at Zala Hospital — Walk-in from 8 AM to 4 PM, Saturday to Thursday &nbsp;|&nbsp;
+  <strong>New MRI Unit</strong> now operational · Book a scan today
+</div>
+
+<!-- ================================================
+     ACCREDITATION PARTNERS BAR
+================================================ -->
+<div class="partners">
+  <div class="container partners__inner">
+    <div class="partners__item"><span>🌐</span><span>WHO Affiliated</span></div>
+    <div class="partners__item"><span>🏅</span><span>MoPH Certified</span></div>
+    <div class="partners__item"><span>🤝</span><span>UN Partner Hospital</span></div>
+    <div class="partners__item"><span>🎓</span><span>Medical Training Centre</span></div>
+    <div class="partners__item"><span>♻️</span><span>Green Hospital Award</span></div>
+  </div>
+</div>
+
+<!-- ================================================
+     ABOUT ZALA HOSPITAL
+================================================ -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="about__grid">
+
+      <!-- Image side -->
+      <div class="about__img-wrap">
+        <img
+          src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=700&q=80"
+          alt="Zala Hospital Building"
+          class="about__img-main"
+        />
+        <div class="about__img-badge">
+          <div class="about__img-badge-icon">🏥</div>
+          <div class="about__img-badge-text">
+            <strong>Est. 2005</strong>
+            <span>Kabul, Afghanistan</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Text side -->
+      <div>
+        <p class="section__eyebrow">About Us</p>
+        <h2 class="section__title">Zala Hospital — A Beacon of Health in Afghanistan</h2>
+        <p style="color:var(--gray-500);font-size:.95rem;line-height:1.8;margin-bottom:20px;">
+          Founded in 2005 in the heart of Kabul, Zala Hospital has grown to become one
+          of Afghanistan's most trusted and respected healthcare institutions. With over
+          two decades of service, we have dedicated ourselves to delivering compassionate,
+          evidence-based medical care that meets international standards — while remaining
+          deeply rooted in Afghan culture and values.
+        </p>
+        <p style="color:var(--gray-500);font-size:.95rem;line-height:1.8;margin-bottom:32px;">
+          Our 350-bed facility houses 18 specialized departments, modern diagnostic
+          labs, a fully equipped ICU, and a 24-hour emergency unit — providing
+          comprehensive healthcare for families across Kabul and beyond.
+        </p>
+
+        <div class="about__points">
+          <div class="about__point">
+            <div class="about__point-icon">✅</div>
+            <div class="about__point-text">
+              <strong>International Standards</strong>
+              <span>Accredited by Afghanistan's Ministry of Public Health and aligned with WHO protocols.</span>
+            </div>
+          </div>
+          <div class="about__point">
+            <div class="about__point-icon">🧬</div>
+            <div class="about__point-text">
+              <strong>Advanced Technology</strong>
+              <span>Digital X-Ray, 3-Tesla MRI, CT Scan, and robotic-assisted surgical suites.</span>
+            </div>
+          </div>
+          <div class="about__point">
+            <div class="about__point-icon">🌍</div>
+            <div class="about__point-text">
+              <strong>Community Commitment</strong>
+              <span>Free maternal care, vaccination drives, and rural health outreach across provinces.</span>
+            </div>
+          </div>
+        </div>
+
+        <a href="#contact" class="btn btn--primary" style="margin-top:32px;">Get in Touch</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ================================================
+     MISSION & VISION
+================================================ -->
+<section class="section section--alt" id="mission">
+  <div class="container">
+    <p class="section__eyebrow">Our Purpose</p>
+    <h2 class="section__title">Mission, Vision &amp; Values</h2>
+    <p class="section__subtitle">The principles that guide every decision we make and every patient we serve.</p>
+
+    <div class="mv__grid">
+
+      <div class="mv__card">
+        <div class="mv__icon">🎯</div>
+        <h3>Our Mission</h3>
+        <p>
+          To provide affordable, accessible, and high-quality healthcare services to
+          every Afghan patient — regardless of gender, ethnicity, or economic status —
+          with dignity, compassion, and clinical excellence at the forefront of
+          everything we do.
+        </p>
+      </div>
+
+      <div class="mv__card">
+        <div class="mv__icon">🔭</div>
+        <h3>Our Vision</h3>
+        <p>
+          To be Afghanistan's leading hospital — recognized regionally for medical
+          innovation, patient-centered care, and the training of the next generation
+          of Afghan healthcare professionals, contributing to a healthier nation.
+        </p>
+      </div>
+
+      <div class="mv__card">
+        <div class="mv__icon">💎</div>
+        <h3>Our Core Values</h3>
+        <p>
+          <strong>Integrity</strong> — Honesty in every interaction.<br />
+          <strong>Compassion</strong> — Treating patients as family.<br />
+          <strong>Excellence</strong> — Continuous improvement.<br />
+          <strong>Equity</strong> — Equal care for all Afghans.<br />
+          <strong>Innovation</strong> — Embracing modern medicine.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================================================
+     DEPARTMENTS
+================================================ -->
+<section class="section" id="departments">
+  <div class="container">
+    <p class="section__eyebrow">Medical Departments</p>
+    <h2 class="section__title">18 Specialized Departments</h2>
+    <p class="section__subtitle">Every department staffed by board-certified specialists committed to your wellbeing.</p>
+
+    <div class="dept__grid">
+
+      <div class="dept__card">
+        <div class="dept__icon">❤️</div>
+        <h3>Cardiology</h3>
+        <p>Heart disease diagnosis &amp; treatment</p>
+      </div>
+
+      <div class="dept__card">
+        <div class="dept__icon">🧠</div>
+        <h3>Neurology</h3>
+        <p>Brain &amp; nervous system care</p>
+      </div>
+
+      <div class="dept__card">
+        <div class="dept__icon">🦴</div>
+        <h3>Orthopedics</h3>
+        <p>Bone, joint &amp; sports injuries</p>
+      </div>
+
+      <div class="dept__card">
+        <div class="dept__icon">👶</div>
+        <h3>Pediatrics</h3>
+        <p>Comprehensive child healthcare</p>
+      </div>
+
+      <div class="dept__card">
+        <div class="dept__icon">🤰</div>
+        <h3>Obstetrics &amp; Gynecology</h3>
+        <p>Maternal &amp; women's health</p>
+      </div>
+
+      <div class="dept__card">
+        <div class="dept__icon">🫁</div>
+        <h3>Pulmonology</h3>
+        <p>Lung &amp; respiratory conditions</p>
+      </div>
+
+      <div class="dept__card">
+        <div class="dept__icon">🔬</div>
+        <h3>Oncology</h3>
+        <p>Cancer diagnosis &amp; treatment</p>
+      </div>
+
+      <div class="dept__card">
+        <div class="dept__icon">🦷</div>
+        <h3>Dentistry</h3>
+        <p>Oral health &amp; maxillofacial</p>
+      </div>
+
+      <div class="dept__card">
+        <div class="dept__icon">👁️</div>
+        <h3>Ophthalmology</h3>
+        <p>Eye care &amp; vision surgery</p>
+      </div>
+
+      <div class="dept__card">
+        <div class="dept__icon">🩺</div>
+        <h3>General Medicine</h3>
+        <p>Primary care &amp; internal medicine</p>
+      </div>
+
+      <div class="dept__card">
+        <div class="dept__icon">🩻</div>
+        <h3>Radiology</h3>
+        <p>MRI, CT, X-Ray &amp; ultrasound</p>
+      </div>
+
+      <div class="dept__card">
+        <div class="dept__icon">🧪</div>
+        <h3>Pathology &amp; Lab</h3>
+        <p>Diagnostic tests &amp; analysis</p>
+      </div>
+
+      <div class="dept__card">
+        <div class="dept__icon">🏃</div>
+        <h3>Physiotherapy</h3>
+        <p>Rehabilitation &amp; recovery</p>
+      </div>
+
+      <div class="dept__card">
+        <div class="dept__icon">🩸</div>
+        <h3>Hematology</h3>
+        <p>Blood disorders &amp; transfusion</p>
+      </div>
+
+      <div class="dept__card">
+        <div class="dept__icon">🫀</div>
+        <h3>Vascular Surgery</h3>
+        <p>Arteries, veins &amp; lymphatics</p>
+      </div>
+
+      <div class="dept__card">
+        <div class="dept__icon">💊</div>
+        <h3>Endocrinology</h3>
+        <p>Diabetes, thyroid &amp; hormones</p>
+      </div>
+
+      <div class="dept__card">
+        <div class="dept__icon">🧘</div>
+        <h3>Psychiatry</h3>
+        <p>Mental health &amp; counselling</p>
+      </div>
+
+      <div class="dept__card">
+        <div class="dept__icon">🚑</div>
+        <h3>Emergency Medicine</h3>
+        <p>24/7 critical &amp; trauma care</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ================================================
+     MEDICAL SERVICES
+================================================ -->
+<section class="section section--alt" id="services">
+  <div class="container">
+    <p class="section__eyebrow">What We Offer</p>
+    <h2 class="section__title">Comprehensive Medical Services</h2>
+    <p class="section__subtitle">From preventive screenings to complex surgeries — Zala Hospital covers your every healthcare need.</p>
+
+    <div class="services__grid">
+
+      <div class="service__card">
+        <div class="service__img">🔪</div>
+        <div class="service__body">
+          <h3>Surgical Services</h3>
+          <p>General, laparoscopic, orthopedic, cardiac, and neurosurgical procedures performed by experienced surgeons in 12 fully equipped operating theaters.</p>
+          <a href="#contact" class="service__link">Learn more →</a>
+        </div>
+      </div>
+
+      <div class="service__card">
+        <div class="service__img" style="background:linear-gradient(135deg,var(--teal),#059669);">🧬</div>
+        <div class="service__body">
+          <h3>Diagnostic &amp; Imaging</h3>
+          <p>State-of-the-art MRI, CT-Scan, Digital X-Ray, Ultrasound, Echocardiography, and advanced pathology labs with same-day results.</p>
+          <a href="#contact" class="service__link">Learn more →</a>
+        </div>
+      </div>
+
+      <div class="service__card">
+        <div class="service__img" style="background:linear-gradient(135deg,#7c3aed,#5b21b6);">🤱</div>
+        <div class="service__body">
+          <h3>Maternity &amp; Neonatal</h3>
+          <p>Comprehensive maternal care from prenatal consultations to delivery and postnatal support, including a NICU for premature and critical newborns.</p>
+          <a href="#contact" class="service__link">Learn more →</a>
+        </div>
+      </div>
+
+      <div class="service__card">
+        <div class="service__img" style="background:linear-gradient(135deg,#d97706,#b45309);">💉</div>
+        <div class="service__body">
+          <h3>Vaccination &amp; Prevention</h3>
+          <p>Full immunization programs for children and adults, including COVID-19, influenza, hepatitis, and national EPI vaccines at no cost for children under 5.</p>
+          <a href="#contact" class="service__link">Learn more →</a>
+        </div>
+      </div>
+
+      <div class="service__card">
+        <div class="service__img" style="background:linear-gradient(135deg,#dc2626,#991b1b);">🚑</div>
+        <div class="service__body">
+          <h3>Emergency &amp; Trauma</h3>
+          <p>24/7 emergency care with trained ER physicians, trauma surgeons, and a fully stocked resuscitation bay handling 300+ emergencies monthly.</p>
+          <a href="#emergency" class="service__link">Emergency info →</a>
+        </div>
+      </div>
+
+      <div class="service__card">
+        <div class="service__img" style="background:linear-gradient(135deg,#0891b2,#0e7490);">🧘</div>
+        <div class="service__body">
+          <h3>Mental Health Services</h3>
+          <p>Compassionate psychiatric care, individual and family counselling, and addiction recovery support — addressing Afghanistan's growing mental health needs.</p>
+          <a href="#contact" class="service__link">Learn more →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================================================
+     DOCTORS TEAM
+================================================ -->
+<section class="section" id="doctors">
+  <div class="container">
+    <p class="section__eyebrow">Our Medical Team</p>
+    <h2 class="section__title">Meet Our Senior Physicians</h2>
+    <p class="section__subtitle">Board-certified Afghan doctors and international specialists dedicated to your health.</p>
+
+    <div class="doctors__grid">
+
+      <!-- Doctor 1 -->
+      <div class="doctor__card">
+        <div class="doctor__photo">👨‍⚕️</div>
+        <div class="doctor__body">
+          <h3>Dr. Ahmad Shah Noori</h3>
+          <div class="doctor__specialty">Chief of Cardiology</div>
+          <div class="doctor__meta">
+            <span>🎓 22 yrs exp.</span>
+            <span>📍 Kabul</span>
+          </div>
+          <div class="badge" style="margin-top:12px;">Heart Surgery</div>
+        </div>
+      </div>
+
+      <!-- Doctor 2 -->
+      <div class="doctor__card">
+        <div class="doctor__photo" style="background:linear-gradient(160deg,#fce7f3,#fdf2f8);">👩‍⚕️</div>
+        <div class="doctor__body">
+          <h3>Dr. Maryam Rahimi</h3>
+          <div class="doctor__specialty">Head of Obstetrics &amp; Gynecology</div>
+          <div class="doctor__meta">
+            <span>🎓 18 yrs exp.</span>
+            <span>📍 Kabul</span>
+          </div>
+          <div class="badge" style="margin-top:12px;">Maternal Care</div>
+        </div>
+      </div>
+
+      <!-- Doctor 3 -->
+      <div class="doctor__card">
+        <div class="doctor__photo" style="background:linear-gradient(160deg,#f0fdf4,#dcfce7);">👨‍⚕️</div>
+        <div class="doctor__body">
+          <h3>Dr. Wahid Karimi</h3>
+          <div class="doctor__specialty">Senior Neurologist</div>
+          <div class="doctor__meta">
+            <span>🎓 16 yrs exp.</span>
+            <span>📍 Kabul</span>
+          </div>
+          <div class="badge" style="margin-top:12px;">Brain &amp; Spine</div>
+        </div>
+      </div>
+
+      <!-- Doctor 4 -->
+      <div class="doctor__card">
+        <div class="doctor__photo" style="background:linear-gradient(160deg,#fff7ed,#ffedd5);">👩‍⚕️</div>
+        <div class="doctor__body">
+          <h3>Dr. Zarghona Ahmadi</h3>
+          <div class="doctor__specialty">Pediatric Specialist</div>
+          <div class="doctor__meta">
+            <span>🎓 14 yrs exp.</span>
+            <span>📍 Kabul</span>
+          </div>
+          <div class="badge" style="margin-top:12px;">Child Health</div>
+        </div>
+      </div>
+
+      <!-- Doctor 5 -->
+      <div class="doctor__card">
+        <div class="doctor__photo" style="background:linear-gradient(160deg,#ede9fe,#f5f3ff);">👨‍⚕️</div>
+        <div class="doctor__body">
+          <h3>Dr. Sayed Mustafa Hashimi</h3>
+          <div class="doctor__specialty">Orthopedic Surgeon</div>
+          <div class="doctor__meta">
+            <span>🎓 20 yrs exp.</span>
+            <span>📍 Kabul</span>
+          </div>
+          <div class="badge" style="margin-top:12px;">Joint &amp; Spine</div>
+        </div>
+      </div>
+
+      <!-- Doctor 6 -->
+      <div class="doctor__card">
+        <div class="doctor__photo" style="background:linear-gradient(160deg,#fef2f2,#fee2e2);">👩‍⚕️</div>
+        <div class="doctor__body">
+          <h3>Dr. Nilofar Sultani</h3>
+          <div class="doctor__specialty">Oncology &amp; Internal Medicine</div>
+          <div class="doctor__meta">
+            <span>🎓 12 yrs exp.</span>
+            <span>📍 Kabul</span>
+          </div>
+          <div class="badge" style="margin-top:12px;">Cancer Care</div>
+        </div>
+      </div>
+
+      <!-- Doctor 7 -->
+      <div class="doctor__card">
+        <div class="doctor__photo" style="background:linear-gradient(160px,#ecfdf5,#d1fae5);">👨‍⚕️</div>
+        <div class="doctor__body">
+          <h3>Dr. Mohammad Yusuf Safi</h3>
+          <div class="doctor__specialty">Pulmonologist</div>
+          <div class="doctor__meta">
+            <span>🎓 15 yrs exp.</span>
+            <span>📍 Kabul</span>
+          </div>
+          <div class="badge" style="margin-top:12px;">Lung &amp; Respiratory</div>
+        </div>
+      </div>
+
+      <!-- Doctor 8 -->
+      <div class="doctor__card">
+        <div class="doctor__photo" style="background:linear-gradient(160deg,#fdf4ff,#fae8ff);">👩‍⚕️</div>
+        <div class="doctor__body">
+          <h3>Dr. Fatima Noor Wardak</h3>
+          <div class="doctor__specialty">Psychiatrist &amp; Counsellor</div>
+          <div class="doctor__meta">
+            <span>🎓 10 yrs exp.</span>
+            <span>📍 Kabul</span>
+          </div>
+          <div class="badge" style="margin-top:12px;">Mental Health</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ================================================
+     PATIENT REGISTRATION FORM
+================================================ -->
+<section class="section section--alt" id="forms">
+  <div class="container">
+    <p class="section__eyebrow">Patient Services</p>
+    <h2 class="section__title">Register &amp; Book an Appointment</h2>
+    <p class="section__subtitle">Fill in your details below — our team will confirm your appointment within 2 hours.</p>
+
+    <div class="forms__grid">
+
+      <!-- Registration Form -->
+      <div class="form__card">
+        <h2>🗂️ Patient Registration</h2>
+        <p class="form__desc">New to Zala Hospital? Register as a patient to access our services.</p>
+
+        <div class="form__row">
+          <div class="form__group">
+            <label for="reg-fname">First Name (نام)</label>
+            <input type="text" id="reg-fname" placeholder="e.g. Ahmad" />
+          </div>
+          <div class="form__group">
+            <label for="reg-lname">Last Name (تخلص)</label>
+            <input type="text" id="reg-lname" placeholder="e.g. Noori" />
+          </div>
+        </div>
+
+        <div class="form__row">
+          <div class="form__group">
+            <label for="reg-dob">Date of Birth</label>
+            <input type="date" id="reg-dob" />
+          </div>
+          <div class="form__group">
+            <label for="reg-gender">Gender</label>
+            <select id="reg-gender">
+              <option value="">— Select —</option>
+              <option>Male</option>
+              <option>Female</option>
+              <option>Prefer not to say</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form__group">
+          <label for="reg-phone">Phone Number</label>
+          <input type="tel" id="reg-phone" placeholder="+93 7XX XXX XXX" />
+        </div>
+
+        <div class="form__group">
+          <label for="reg-email">Email Address (optional)</label>
+          <input type="email" id="reg-email" placeholder="your@email.com" />
+        </div>
+
+        <div class="form__group">
+          <label for="reg-address">Home Address / Province</label>
+          <input type="text" id="reg-address" placeholder="e.g. Karte Char, Kabul" />
+        </div>
+
+        <div class="form__group">
+          <label for="reg-tazkira">Tazkira / National ID Number</label>
+          <input type="text" id="reg-tazkira" placeholder="ID number" />
+        </div>
+
+        <div class="form__group">
+          <label for="reg-blood">Blood Group</label>
+          <select id="reg-blood">
+            <option value="">— Select —</option>
+            <option>A+</option><option>A−</option>
+            <option>B+</option><option>B−</option>
+            <option>AB+</option><option>AB−</option>
+            <option>O+</option><option>O−</option>
+            <option>Unknown</option>
+          </select>
+        </div>
+
+        <div class="form__group">
+          <label for="reg-medical">Known Medical Conditions / Allergies</label>
+          <textarea id="reg-medical" placeholder="List any chronic conditions, medications, or allergies…"></textarea>
+        </div>
+
+        <button type="button" class="form__submit">Register as Patient</button>
+      </div>
+
+      <!-- Appointment Booking Form -->
+      <div class="form__card" id="appointment">
+        <h2>📅 Book an Appointment</h2>
+        <p class="form__desc">Schedule a visit with one of our specialists at your convenience.</p>
+
+        <div class="form__row">
+          <div class="form__group">
+            <label for="apt-fname">First Name</label>
+            <input type="text" id="apt-fname" placeholder="Ahmad" />
+          </div>
+          <div class="form__group">
+            <label for="apt-lname">Last Name</label>
+            <input type="text" id="apt-lname" placeholder="Karimi" />
+          </div>
+        </div>
+
+        <div class="form__group">
+          <label for="apt-phone">Contact Number</label>
+          <input type="tel" id="apt-phone" placeholder="+93 7XX XXX XXX" />
+        </div>
+
+        <div class="form__group">
+          <label for="apt-dept">Select Department</label>
+          <select id="apt-dept">
+            <option value="">— Choose Department —</option>
+            <option>Cardiology</option>
+            <option>Neurology</option>
+            <option>Orthopedics</option>
+            <option>Pediatrics</option>
+            <option>Obstetrics &amp; Gynecology</option>
+            <option>Pulmonology</option>
+            <option>Oncology</option>
+            <option>Dentistry</option>
+            <option>Ophthalmology</option>
+            <option>General Medicine</option>
+            <option>Radiology</option>
+            <option>Pathology &amp; Lab</option>
+            <option>Physiotherapy</option>
+            <option>Hematology</option>
+            <option>Vascular Surgery</option>
+            <option>Endocrinology</option>
+            <option>Psychiatry</option>
+            <option>Emergency Medicine</option>
+          </select>
+        </div>
+
+        <div class="form__group">
+          <label for="apt-doctor">Preferred Doctor</label>
+          <select id="apt-doctor">
+            <option value="">— Any Available Doctor —</option>
+            <option>Dr. Ahmad Shah Noori</option>
+            <option>Dr. Maryam Rahimi</option>
+            <option>Dr. Wahid Karimi</option>
+            <option>Dr. Zarghona Ahmadi</option>
+            <option>Dr. Sayed Mustafa Hashimi</option>
+            <option>Dr. Nilofar Sultani</option>
+            <option>Dr. Mohammad Yusuf Safi</option>
+            <option>Dr. Fatima Noor Wardak</option>
+          </select>
+        </div>
+
+        <div class="form__row">
+          <div class="form__group">
+            <label for="apt-date">Preferred Date</label>
+            <input type="date" id="apt-date" />
+          </div>
+          <div class="form__group">
+            <label for="apt-time">Preferred Time</label>
+            <select id="apt-time">
+              <option value="">— Time Slot —</option>
+              <option>08:00 – 09:00 AM</option>
+              <option>09:00 – 10:00 AM</option>
+              <option>10:00 – 11:00 AM</option>
+              <option>11:00 AM – 12:00 PM</option>
+              <option>12:00 – 01:00 PM</option>
+              <option>02:00 – 03:00 PM</option>
+              <option>03:00 – 04:00 PM</option>
+              <option>04:00 – 05:00 PM</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form__group">
+          <label for="apt-type">Visit Type</label>
+          <select id="apt-type">
+            <option value="">— Select —</option>
+            <option>First Consultation</option>
+            <option>Follow-up Visit</option>
+            <option>Lab / Test</option>
+            <option>Surgical Consultation</option>
+            <option>Vaccination</option>
+            <option>Physiotherapy Session</option>
+          </select>
+        </div>
+
+        <div class="form__group">
+          <label for="apt-notes">Symptoms / Notes for the Doctor</label>
+          <textarea id="apt-notes" placeholder="Briefly describe your main symptoms or reason for visit…"></textarea>
+        </div>
+
+        <div class="form__group">
+          <label for="apt-insurance">Insurance / Payment</label>
+          <select id="apt-insurance">
+            <option value="">— Select —</option>
+            <option>Self-Pay (Cash)</option>
+            <option>Afghan National Army (ANA) Insurance</option>
+            <option>Government Employee Insurance</option>
+            <option>International Insurance</option>
+            <option>NGO / Humanitarian Referral</option>
+          </select>
+        </div>
+
+        <button type="button" class="form__submit">Book My Appointment</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================================================
+     WORKING HOURS TABLE
+================================================ -->
+<section class="section" id="hours">
+  <div class="container">
+    <p class="section__eyebrow">Visiting Hours</p>
+    <h2 class="section__title" style="text-align:center;">Working Hours</h2>
+    <p class="section__subtitle" style="text-align:center;margin-left:auto;margin-right:auto;">
+      Zala Hospital outpatient departments operate Saturday–Thursday. Emergency services run 24/7.
+    </p>
+
+    <div class="hours__wrap">
+      <div class="hours__header">
+        <span style="font-size:1.6rem;">🕐</span>
+        <h3>Zala Hospital — Department Schedule, Kabul</h3>
+      </div>
+      <table class="hours__table">
+        <thead>
+          <tr>
+            <th>Day / روز</th>
+            <th>Outpatient (OPD)</th>
+            <th>Inpatient &amp; ICU</th>
+            <th>Emergency</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Saturday (شنبه)</strong></td>
+            <td>08:00 – 17:00</td>
+            <td>24 Hours</td>
+            <td>24 Hours</td>
+            <td><span class="hours__status status--open">● Open</span></td>
+          </tr>
+          <tr>
+            <td><strong>Sunday (یکشنبه)</strong></td>
+            <td>08:00 – 17:00</td>
+            <td>24 Hours</td>
+            <td>24 Hours</td>
+            <td><span class="hours__status status--open">● Open</span></td>
+          </tr>
+          <tr>
+            <td><strong>Monday (دوشنبه)</strong></td>
+            <td>08:00 – 17:00</td>
+            <td>24 Hours</td>
+            <td>24 Hours</td>
+            <td><span class="hours__status status--open">● Open</span></td>
+          </tr>
+          <tr>
+            <td><strong>Tuesday (سه‌شنبه)</strong></td>
+            <td>08:00 – 17:00</td>
+            <td>24 Hours</td>
+            <td>24 Hours</td>
+            <td><span class="hours__status status--open">● Open</span></td>
+          </tr>
+          <tr>
+            <td><strong>Wednesday (چهارشنبه)</strong></td>
+            <td>08:00 – 17:00</td>
+            <td>24 Hours</td>
+            <td>24 Hours</td>
+            <td><span class="hours__status status--open">● Open</span></td>
+          </tr>
+          <tr>
+            <td><strong>Thursday (پنجشنبه)</strong></td>
+            <td>08:00 – 13:00</td>
+            <td>24 Hours</td>
+            <td>24 Hours</td>
+            <td><span class="hours__status status--open">● Open</span></td>
+          </tr>
+          <tr>
+            <td><strong>Friday (جمعه)</strong></td>
+            <td>Closed</td>
+            <td>24 Hours</td>
+            <td>24 Hours</td>
+            <td><span class="hours__status status--close">● OPD Closed</span></td>
+          </tr>
+          <tr>
+            <td><strong>Public Holidays</strong></td>
+            <td>Reduced Hours</td>
+            <td>24 Hours</td>
+            <td>24 Hours</td>
+            <td><span class="hours__status status--24h">● Emergency Open</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Extra note -->
+    <p style="text-align:center;margin-top:24px;font-size:.88rem;color:var(--gray-500);">
+      🚑 Emergency &amp; ICU services operate <strong>24 hours, 7 days a week, 365 days a year</strong> — no appointment needed.
+    </p>
+
+  </div>
+</section>
+
+<!-- ================================================
+     TESTIMONIALS
+================================================ -->
+<section class="section section--dark" id="testimonials">
+  <div class="container">
+    <p class="section__eyebrow">Patient Stories</p>
+    <h2 class="section__title">What Our Patients Say</h2>
+    <p class="section__subtitle">Real experiences from families across Afghanistan.</p>
+
+    <div class="testimonials__grid">
+
+      <div class="testimonial__card">
+        <div class="testimonial__stars">★★★★★</div>
+        <p class="testimonial__text">
+          "After my father's heart attack, Zala Hospital's cardiology team worked tirelessly
+          through the night to save his life. Dr. Noori explained every step with patience
+          and warmth. We are forever grateful."
+        </p>
+        <div class="testimonial__author">
+          <div class="testimonial__avatar">ر</div>
+          <div class="testimonial__author-info">
+            <strong>Rahimullah Barakzai</strong>
+            <span>Kabul, Parwan District</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial__card">
+        <div class="testimonial__stars">★★★★★</div>
+        <p class="testimonial__text">
+          "I delivered my baby at Zala Hospital and Dr. Maryam Rahimi made me feel so
+          safe and supported. The maternity ward is clean, modern, and the nurses were
+          exceptionally kind. I recommend it to all Afghan mothers."
+        </p>
+        <div class="testimonial__author">
+          <div class="testimonial__avatar">ف</div>
+          <div class="testimonial__author-info">
+            <strong>Fatima Sultanzada</strong>
+            <span>Kabul, Karte Seh</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial__card">
+        <div class="testimonial__stars">★★★★★</div>
+        <p class="testimonial__text">
+          "My son had a serious neurological condition and after treatment at Zala Hospital
+          under Dr. Karimi, he is now fully recovered. The diagnostic technology here
+          rivals hospitals I've visited in Turkey."
+        </p>
+        <div class="testimonial__author">
+          <div class="testimonial__avatar">ع</div>
+          <div class="testimonial__author-info">
+            <strong>Abdul Samad Nooristani</strong>
+            <span>Nangarhar Province</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial__card">
+        <div class="testimonial__stars">★★★★☆</div>
+        <p class="testimonial__text">
+          "I came from Mazar-i-Sharif specifically for orthopedic surgery. The procedure
+          by Dr. Hashimi was a complete success and the physiotherapy team helped me
+          walk again within three weeks. Highly recommended."
+        </p>
+        <div class="testimonial__author">
+          <div class="testimonial__avatar">ص</div>
+          <div class="testimonial__author-info">
+            <strong>Safiullah Popalzai</strong>
+            <span>Balkh Province</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial__card">
+        <div class="testimonial__stars">★★★★★</div>
+        <p class="testimonial__text">
+          "My children have been patients at Zala Pediatrics since birth. Dr. Zarghona
+          is wonderful with kids — thorough, gentle, and always available for questions
+          over the phone. The best children's doctor in Kabul."
+        </p>
+        <div class="testimonial__author">
+          <div class="testimonial__avatar">ن</div>
+          <div class="testimonial__author-info">
+            <strong>Najiba Ahmadzai</strong>
+            <span>Kabul, Wazir Akbar Khan</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial__card">
+        <div class="testimonial__stars">★★★★★</div>
+        <p class="testimonial__text">
+          "The mental health clinic at Zala Hospital is a breakthrough for Afghanistan.
+          Dr. Fatima listened to me without judgment and helped me manage my anxiety.
+          More Afghans need to know this service exists."
+        </p>
+        <div class="testimonial__author">
+          <div class="testimonial__avatar">م</div>
+          <div class="testimonial__author-info">
+            <strong>Mina Rasooli</strong>
+            <span>Kabul, Shahr-e-Naw</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================================================
+     FAQ SECTION
+================================================ -->
+<section class="section section--alt" id="faq">
+  <div class="container">
+    <p class="section__eyebrow">Questions</p>
+    <h2 class="section__title" style="text-align:center;">Frequently Asked Questions</h2>
+    <p class="section__subtitle" style="text-align:center;margin:0 auto 48px;">Everything you need to know before your visit to Zala Hospital.</p>
+
+    <div class="faq__list">
+
+      <!-- FAQ 1 -->
+      <div class="faq__item">
+        <input type="checkbox" class="faq__toggle" id="faq1" />
+        <label class="faq__q" for="faq1">
+          How do I book an appointment at Zala Hospital?
+        </label>
+        <div class="faq__a">
+          You can book an appointment online using the form on this page, call our reception at
+          <strong>+93 700 100 200</strong>, or visit the hospital registration desk in person
+          at our Kabul location. We aim to confirm all bookings within 2 hours during working hours.
+        </div>
+      </div>
+
+      <!-- FAQ 2 -->
+      <div class="faq__item">
+        <input type="checkbox" class="faq__toggle" id="faq2" />
+        <label class="faq__q" for="faq2">
+          Does Zala Hospital accept international patients?
+        </label>
+        <div class="faq__a">
+          Yes. Zala Hospital welcomes patients from across Afghanistan and internationally.
+          We have translators available for Dari, Pashto, Uzbek, Arabic, and English. International
+          patients should bring their passport and insurance documents.
+        </div>
+      </div>
+
+      <!-- FAQ 3 -->
+      <div class="faq__item">
+        <input type="checkbox" class="faq__toggle" id="faq3" />
+        <label class="faq__q" for="faq3">
+          What documents do I need to bring to my first visit?
+        </label>
+        <div class="faq__a">
+          Please bring your Tazkira (national ID card) or passport, any previous medical reports
+          or test results, a list of current medications, and your insurance card if applicable.
+          For children, bring the child's vaccination booklet and guardian ID.
+        </div>
+      </div>
+
+      <!-- FAQ 4 -->
+      <div class="faq__item">
+        <input type="checkbox" class="faq__toggle" id="faq4" />
+        <label class="faq__q" for="faq4">
+          Is emergency care available 24 hours a day?
+        </label>
+        <div class="faq__a">
+          Absolutely. Our Emergency Department operates 24 hours a day, 7 days a week,
+          365 days a year — including Fridays and all public holidays. Call <strong>+93 700 999 911</strong>
+          for our ambulance service. No appointment is needed for emergencies.
+        </div>
+      </div>
+
+      <!-- FAQ 5 -->
+      <div class="faq__item">
+        <input type="checkbox" class="faq__toggle" id="faq5" />
+        <label class="faq__q" for="faq5">
+          What payment methods does Zala Hospital accept?
+        </label>
+        <div class="faq__a">
+          We accept cash (Afghani and USD), M-Paisa mobile payments, major insurance plans
+          (ANA, government employee), and NGO/humanitarian referral letters. For financially
+          vulnerable patients, our social welfare desk can discuss subsidized care options.
+        </div>
+      </div>
+
+      <!-- FAQ 6 -->
+      <div class="faq__item">
+        <input type="checkbox" class="faq__toggle" id="faq6" />
+        <label class="faq__q" for="faq6">
+          Do you offer home visit or telemedicine services?
+        </label>
+        <div class="faq__a">
+          Yes, Zala Hospital launched a telemedicine programme in 2022. Video consultations
+          are available for follow-up appointments and non-emergency cases. Contact reception
+          to schedule a telemedicine session. Home visits are available for elderly or mobility-impaired
+          patients within Kabul city limits.
+        </div>
+      </div>
+
+      <!-- FAQ 7 -->
+      <div class="faq__item">
+        <input type="checkbox" class="faq__toggle" id="faq7" />
+        <label class="faq__q" for="faq7">
+          How can I get my lab or diagnostic test results?
+        </label>
+        <div class="faq__a">
+          Lab results are typically ready within 4–24 hours depending on the test type.
+          You can collect results in person from the Lab Reception, or ask your doctor to
+          include them in your patient portal record. For urgent results, our lab team
+          contacts the ordering physician directly.
+        </div>
+      </div>
+
+      <!-- FAQ 8 -->
+      <div class="faq__item">
+        <input type="checkbox" class="faq__toggle" id="faq8" />
+        <label class="faq__q" for="faq8">
+          Is there a pharmacy on the hospital premises?
+        </label>
+        <div class="faq__a">
+          Yes, Zala Hospital has a fully stocked 24-hour pharmacy on the ground floor, adjacent
+          to the main emergency entrance. It carries prescription medications, over-the-counter
+          drugs, medical supplies, and baby care products. Discounts are available for admitted patients.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================================================
+     EMERGENCY SERVICES
+================================================ -->
+<section class="section section--dark" id="emergency">
+  <div class="container">
+    <p class="section__eyebrow">24/7 Emergency</p>
+    <h2 class="section__title">Emergency Services</h2>
+    <p class="section__subtitle">
+      Life-threatening? Don't wait. Call our emergency line immediately or go directly to our ER entrance on Abdul Haq Square, Kabul.
+    </p>
+
+    <div class="emergency__grid">
+
+      <div class="emergency__card">
+        <div class="emergency__card-icon">🚑</div>
+        <h3>Ambulance Service</h3>
+        <p>GPS-tracked ambulances dispatched across Kabul within minutes. Advanced life support equipped.</p>
+        <div class="emergency__number">+93 700 999 911</div>
+      </div>
+
+      <div class="emergency__card">
+        <div class="emergency__card-icon">❤️‍🔥</div>
+        <h3>Cardiac Emergency</h3>
+        <p>Dedicated cath lab and heart attack protocol — door-to-balloon time under 60 minutes.</p>
+        <div class="emergency__number">+93 700 100 911</div>
+      </div>
+
+      <div class="emergency__card">
+        <div class="emergency__card-icon">🧠</div>
+        <h3>Stroke &amp; Neuro Emergency</h3>
+        <p>Rapid stroke team available 24/7 with CT angiography and thrombolytic therapy.</p>
+        <div class="emergency__number">+93 700 100 922</div>
+      </div>
+
+      <div class="emergency__card">
+        <div class="emergency__card-icon">🤱</div>
+        <h3>Obstetric Emergency</h3>
+        <p>High-risk deliveries, C-sections, and NICU on standby round the clock for mother and child.</p>
+        <div class="emergency__number">+93 700 100 933</div>
+      </div>
+
+      <div class="emergency__card">
+        <div class="emergency__card-icon">🩸</div>
+        <h3>Trauma &amp; Surgery</h3>
+        <p>Fully staffed trauma bay with 4 emergency operating theaters open 24/7 for critical cases.</p>
+        <div class="emergency__number">+93 700 100 944</div>
+      </div>
+
+      <div class="emergency__card">
+        <div class="emergency__card-icon">☠️</div>
+        <h3>Poison &amp; Toxicology</h3>
+        <p>Expert toxicology team for overdoses, chemical exposure, and food poisoning emergencies.</p>
+        <div class="emergency__number">+93 700 100 955</div>
+      </div>
+
+    </div>
+
+    <!-- Emergency note -->
+    <div style="margin-top:40px;background:rgba(220,38,38,.15);border:1px solid rgba(220,38,38,.30);border-radius:var(--radius-md);padding:24px 28px;display:flex;gap:16px;align-items:flex-start;">
+      <span style="font-size:1.8rem;flex-shrink:0;">⚠️</span>
+      <div>
+        <strong style="color:#fca5a5;display:block;margin-bottom:6px;">Important: When to Call Emergency</strong>
+        <p style="font-size:.9rem;color:#94a3b8;line-height:1.7;">
+          Call immediately for: chest pain, difficulty breathing, loss of consciousness, severe bleeding,
+          stroke symptoms (face drooping, arm weakness, speech difficulty), severe burns, poisoning,
+          or any life-threatening condition. Do not drive yourself — call our ambulance.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================================================
+     CONTACT SECTION
+================================================ -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="contact__grid">
+
+      <!-- Contact info -->
+      <div class="contact__info">
+        <p class="section__eyebrow">Reach Us</p>
+        <h2>Contact Zala Hospital</h2>
+        <p>Our patient relations team is available Saturday–Thursday, 7 AM to 8 PM. For emergencies, call 24/7.</p>
+
+        <div class="contact__items">
+
+          <div class="contact__item">
+            <div class="contact__item-icon">📍</div>
+            <div class="contact__item-text">
+              <strong>Address</strong>
+              <span>Abdul Haq Square, Karte Parwan,<br />Kabul 1001, Islamic Republic of Afghanistan</span>
+            </div>
+          </div>
+
+          <div class="contact__item">
+            <div class="contact__item-icon">📞</div>
+            <div class="contact__item-text">
+              <strong>Main Reception</strong>
+              <span>+93 700 100 200 &nbsp;|&nbsp; +93 700 100 201</span>
+            </div>
+          </div>
+
+          <div class="contact__item">
+            <div class="contact__item-icon">🚑</div>
+            <div class="contact__item-text">
+              <strong>Emergency / Ambulance (24/7)</strong>
+              <span>+93 700 999 911</span>
+            </div>
+          </div>
+
+          <div class="contact__item">
+            <div class="contact__item-icon">📧</div>
+            <div class="contact__item-text">
+              <strong>Email</strong>
+              <span>info@zalahospital.af &nbsp;|&nbsp; emergency@zalahospital.af</span>
+            </div>
+          </div>
+
+          <div class="contact__item">
+            <div class="contact__item-icon">🌐</div>
+            <div class="contact__item-text">
+              <strong>Website</strong>
+              <span>www.zalahospital.af</span>
+            </div>
+          </div>
+
+          <div class="contact__item">
+            <div class="contact__item-icon">🕐</div>
+            <div class="contact__item-text">
+              <strong>OPD Hours</strong>
+              <span>Saturday–Thursday: 08:00 – 17:00 &nbsp;|&nbsp; Emergency: 24/7</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Map placeholder -->
+      <div>
+        <div class="contact__map">
+          <span>🗺️</span>
+          <p>Zala Hospital — Karte Parwan, Kabul</p>
+          <small style="color:var(--blue-500);font-size:.82rem;">Abdul Haq Square, Kabul 1001</small>
+        </div>
+
+        <!-- Quick contact form -->
+        <div style="margin-top:28px;background:var(--gray-100);border-radius:var(--radius-md);padding:28px 24px;">
+          <h3 style="font-size:1.05rem;color:var(--blue-900);margin-bottom:16px;font-weight:700;">📩 Send Us a Message</h3>
+          <div class="form__group">
+            <label for="c-name">Your Name</label>
+            <input type="text" id="c-name" placeholder="Full name" />
+          </div>
+          <div class="form__group">
+            <label for="c-phone">Phone Number</label>
+            <input type="tel" id="c-phone" placeholder="+93 7XX XXX XXX" />
+          </div>
+          <div class="form__group">
+            <label for="c-msg">Message</label>
+            <textarea id="c-msg" placeholder="How can we help you?" style="min-height:100px;"></textarea>
+          </div>
+          <button type="button" class="form__submit" style="margin-top:4px;">Send Message</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ================================================
+     LOCATION INFORMATION
+================================================ -->
+<section class="section section--alt" id="location">
+  <div class="container">
+    <p class="section__eyebrow">Getting Here</p>
+    <h2 class="section__title" style="text-align:center;">Location &amp; Access</h2>
+    <p class="section__subtitle" style="text-align:center;margin:0 auto 48px;">
+      Zala Hospital is centrally located in Kabul, easily accessible from all major districts.
+    </p>
+
+    <div class="location__grid">
+
+      <div class="location__card">
+        <div class="location__card-icon">🏢</div>
+        <h3>Main Campus</h3>
+        <p>Abdul Haq Square, Karte Parwan, Kabul 1001</p>
+      </div>
+
+      <div class="location__card">
+        <div class="location__card-icon">🚌</div>
+        <h3>Public Transport</h3>
+        <p>Bus routes 3, 7, and 12 stop directly outside. 5 min walk from Karte Parwan roundabout.</p>
+      </div>
+
+      <div class="location__card">
+        <div class="location__card-icon">🅿️</div>
+        <h3>Parking</h3>
+        <p>Free parking for 200+ vehicles. Dedicated disabled-access spots at main entrance.</p>
+      </div>
+
+      <div class="location__card">
+        <div class="location__card-icon">✈️</div>
+        <h3>From Airport</h3>
+        <p>25-minute drive from Kabul International Airport via Darulaman Road.</p>
+      </div>
+
+      <div class="location__card">
+        <div class="location__card-icon">🚕</div>
+        <h3>Taxi / Ride</h3>
+        <p>Tell the driver "Zala Hospital, Karte Parwan." All Kabul taxi drivers know the location.</p>
+      </div>
+
+      <div class="location__card">
+        <div class="location__card-icon">♿</div>
+        <h3>Accessibility</h3>
+        <p>Wheelchair ramps, elevators, and accessible bathrooms throughout the hospital.</p>
+      </div>
+
+      <div class="location__card">
+        <div class="location__card-icon">🏨</div>
+        <h3>Patient Guesthouse</h3>
+        <p>Subsidized accommodation for out-of-town patients' families, 2 min from hospital.</p>
+      </div>
+
+      <div class="location__card">
+        <div class="location__card-icon">🍽️</div>
+        <h3>Cafeteria</h3>
+        <p>Halal cafeteria open 7 AM–9 PM. Special dietary meals available for inpatients.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================================================
+     PROFESSIONAL FOOTER
+================================================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+
+      <!-- Brand column -->
+      <div class="footer__brand">
+        <div class="nav__brand">
+          <div class="nav__logo-icon">🏥</div>
+          <div class="nav__brand-text">
+            <span>Zala Hospital</span>
+            <span>Kabul, Afghanistan</span>
+          </div>
+        </div>
+        <p>
+          Zala Hospital has been providing quality healthcare services for families
+          across Afghanistan since 2005. Our mission is compassionate, expert care
+          for every Afghan — regardless of background or circumstance.
+        </p>
+        <div class="footer__social">
+          <a href="#" title="Facebook">📘</a>
+          <a href="#" title="Twitter/X">🐦</a>
+          <a href="#" title="Instagram">📸</a>
+          <a href="#" title="WhatsApp">💬</a>
+          <a href="#" title="YouTube">▶️</a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer__col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#about">About Zala Hospital</a></li>
+          <li><a href="#mission">Mission &amp; Vision</a></li>
+          <li><a href="#departments">Departments</a></li>
+          <li><a href="#services">Medical Services</a></li>
+          <li><a href="#doctors">Our Doctors</a></li>
+          <li><a href="#forms">Patient Registration</a></li>
+          <li><a href="#appointment">Book Appointment</a></li>
+          <li><a href="#testimonials">Patient Stories</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+
+      <!-- Services -->
+      <div class="footer__col">
+        <h4>Departments</h4>
+        <ul>
+          <li><a href="#departments">Cardiology</a></li>
+          <li><a href="#departments">Neurology</a></li>
+          <li><a href="#departments">Orthopedics</a></li>
+          <li><a href="#departments">Pediatrics</a></li>
+          <li><a href="#departments">Obstetrics</a></li>
+          <li><a href="#departments">Oncology</a></li>
+          <li><a href="#departments">Radiology</a></li>
+          <li><a href="#departments">Psychiatry</a></li>
+          <li><a href="#emergency">Emergency</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact details -->
+      <div class="footer__col">
+        <h4>Contact Us</h4>
+        <div class="footer__contact-item">
+          <span>📍</span>
+          <span>Abdul Haq Square, Karte Parwan, Kabul 1001, Afghanistan</span>
+        </div>
+        <div class="footer__contact-item">
+          <span>📞</span>
+          <span>+93 700 100 200</span>
+        </div>
+        <div class="footer__contact-item">
+          <span>🚑</span>
+          <span>Emergency: +93 700 999 911</span>
+        </div>
+        <div class="footer__contact-item">
+          <span>📧</span>
+          <span>info@zalahospital.af</span>
+        </div>
+        <div class="footer__contact-item">
+          <span>🕐</span>
+          <span>OPD: Sat–Thu 08:00–17:00<br />Emergency: 24/7 Always Open</span>
+        </div>
+
+        <a href="#appointment" class="btn btn--teal" style="margin-top:20px;font-size:.85rem;padding:10px 22px;">
+          Book Appointment
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Footer bottom bar -->
+    <div class="footer__bottom">
+      <span>© 2025 Zala Hospital, Kabul, Afghanistan. All rights reserved.</span>
+      <span>
+        <a href="#">Privacy Policy</a> &nbsp;·&nbsp;
+        <a href="#">Terms of Service</a> &nbsp;·&nbsp;
+        <a href="#">Sitemap</a>
+      </span>
+      <span>Built with ❤️ for Afghanistan 🇦🇫</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ================================================
+     SCROLL-TO-TOP BUTTON
+================================================ -->
+<a href="#top" class="scroll-top" title="Back to top">↑</a>
+
+</body>
+</html>
+</body>
+</html>
